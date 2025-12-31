@@ -55,3 +55,36 @@ describe('Scheduler - setTask', () => {
   });
 
 });
+
+// supp task
+describe('Scheduler - removeTaskk', () => {
+
+  test('supprimer une tache existante', () => {
+    const scheduler = new Scheduler();
+    scheduler.setTask('a', jest.fn());
+    scheduler.setTask('b', jest.fn());
+
+    scheduler.removeTask('a');
+
+    const tasks = scheduler.getTasks();
+    expect(tasks).toHaveLength(1);
+    expect(tasks[0].name).toBe('b');
+  });
+
+  test('supprimer une tache inexistante', () => { //ne fait rien pas d'erreur
+    const scheduler = new Scheduler();
+    scheduler.setTask('a', jest.fn());
+
+    scheduler.removeTask('unknown');
+
+    expect(scheduler.getTasks()).toHaveLength(1);
+  });
+
+  test('erreur si name est invalide', () => {
+    const scheduler = new Scheduler();
+
+    expect(() => scheduler.removeTask('')).toThrow();
+    expect(() => scheduler.removeTask(null)).toThrow();
+  });
+
+});
