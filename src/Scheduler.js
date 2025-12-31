@@ -1,6 +1,10 @@
 class Scheduler {
+  constructor() {
+    this.tasks = [];
+  }
+
   getTasks() {
-    return [];
+    return this.tasks;
   }
 }
 
