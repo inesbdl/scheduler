@@ -88,3 +88,19 @@ describe('Scheduler - removeTaskk', () => {
   });
 
 });
+
+//clock
+describe('Scheduler - clock ', () => {
+
+  test('scheduler utilise clock injectee', () => {
+    const clock = { now: jest.fn(() => 42) };
+    const scheduler = new Scheduler(clock);
+
+    expect(scheduler.clock.now()).toBe(42);
+  });
+
+  test('clock injectee doit avoir now', () => {
+    expect(() => new Scheduler({})).toThrow('clock injectee doit avoir now');
+  });
+
+});
