@@ -1,4 +1,5 @@
 const Scheduler = require('../src/Scheduler');
+const Always = require('../src/Always');
 
 describe('Scheduler', () => {
   test('premier scheduler sans taches', () => {
@@ -101,6 +102,39 @@ describe('Scheduler - clock ', () => {
 
   test('clock injectee doit avoir now', () => {
     expect(() => new Scheduler({})).toThrow('clock injectee doit avoir now');
+  });
+
+});
+
+// periodicite always
+
+describe('Scheduler - periodicite always', () => {
+
+  test('execute tache', () => {
+    const clock = { now: jest.fn(() => 0) };
+    const scheduler = new Scheduler(clock);
+    const action = jest.fn();
+
+    scheduler.setTask('task', new Always(), action);
+    scheduler.update();
+
+    expect(action).toHaveBeenCalledTimes(1);
+  });
+
+  test('execute plusieurs taches', () => {
+    const clock = { now: jest.fn(() => 0) };
+    const scheduler = new Scheduler(clock);
+
+    const a1 = jest.fn();
+    const a2 = jest.fn();
+
+    scheduler.setTask('t1', new Always(), a1);
+    scheduler.setTask('t2', new Always(), a2);
+
+    scheduler.update();
+
+    expect(a1).toHaveBeenCalled();
+    expect(a2).toHaveBeenCalled();
   });
 
 });
