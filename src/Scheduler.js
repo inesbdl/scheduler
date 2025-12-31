@@ -18,6 +18,14 @@ class Scheduler {
 
         this.tasks.set(name, { name, action });
     }
+
+    removeTask(name) {
+        if(!name || typeof name !== 'string') {
+            throw new Error('Le nom doit etre une chaine de caractere');
+        }
+        this.tasks.delete(name);
+    }
+
 }
 
 module.exports = Scheduler;
