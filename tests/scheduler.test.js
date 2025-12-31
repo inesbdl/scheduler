@@ -43,7 +43,7 @@ describe('Scheduler - setTask', () => {
 
     expect(() => {
       scheduler.setTask('', action);
-    }).toThrow();
+    }).toThrow("Le nom ne doit pas etre vide et doit etre une chaine de caractere");
   });
 
   test('erreur si action n est pas une fonction', () => {
@@ -51,7 +51,7 @@ describe('Scheduler - setTask', () => {
 
     expect(() => {
       scheduler.setTask('task1', null);
-    }).toThrow();
+    }).toThrow("L'action doit être une fonction");
   });
 
 });
