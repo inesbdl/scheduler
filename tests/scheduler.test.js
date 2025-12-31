@@ -1,7 +1,7 @@
-const Scheduler = require('./Scheduler');
+const Scheduler = require('../src/Scheduler');
 
 describe('Scheduler', () => {
-  test('a new scheduler has no tasks', () => {
+  test('premier scheduler sans taches', () => {
     const scheduler = new Scheduler();
 
     expect(scheduler.getTasks()).toEqual([]);
