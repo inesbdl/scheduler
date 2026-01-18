@@ -4,7 +4,12 @@ class EachWeek {
     }
 
     shouldRun(now) {
-        
+        const date = new Date(now);
+        return date.getUTCDay() === this.dayOfWeek &&
+               date.getUTCHours() === 0 &&
+               date.getUTCMinutes() === 0 &&
+               date.getUTCSeconds() === 0;
     }
 }
+
 module.exports = EachWeek;
